@@ -22,41 +22,38 @@ class Solution {
     }
     public ListNode reverseKGroup(ListNode head, int k) {
         
-         if (k <= 1 || head == null) {
+        if(k<=1 || head==null)
             return head;
-        }
-
-        ListNode current = head;
-        ListNode prev = null;
-
-		int length = getLength(head);
+        ListNode curr= head;
+        ListNode prev=null;
+       
+        int length = getLength(head);
 		int count = length / k;
-        while (count > 0) {
-            ListNode last = prev;
-            ListNode newEnd = current;
-
-            ListNode next = current.next;
-            for (int i = 0; current != null && i < k; i++) {
-                current.next = prev;
-                prev = current;
-                current = next;
-                if (next != null) {
-                    next = next.next;
-                }
+        while(count>0){
+             ListNode temp;
+            ListNode last=prev;
+            ListNode newend=curr;
+            for(int i=0; curr!=null && i<k; i++)
+            {
+                temp=curr.next;
+                curr.next=prev;
+                prev=curr;
+                curr=temp;
             }
-
-            if (last != null) {
-                last.next = prev;
-            } else {
-                head = prev;
+           
+            if(last!=null)
+            {
+                last.next=prev;
+            }else
+            {
+                head=prev;
             }
-
-            newEnd.next = current;
-
-            prev = newEnd;
-			count--;
+             newend.next = curr;
+prev = newend;
+          count--;
         }
+       
         return head;
     }
-}
 
+}
