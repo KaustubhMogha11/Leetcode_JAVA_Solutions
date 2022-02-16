@@ -25,58 +25,106 @@ class Solution {
                            
 //                            return ans;
         
-        int storage[][]=new int[word1.length()+1][word2.length()+1];
+      
+        //mwmoizarion
+//         int storage[][]=new int[word1.length()+1][word2.length()+1];
         
-        for(int i=0; i<=word1.length(); i++)
-        {
-            for(int j=0; j<=word2.length();j++)
-            {
-                storage[i][j]=-1;
-            }
+//         for(int i=0; i<=word1.length(); i++)
+//         {
+//             for(int j=0; j<=word2.length();j++)
+//             {
+//                 storage[i][j]=-1;
+//             }
             
             
-        }
+//         }
            
-        return minDistancem(word1,word2, storage);
-                           
-    }
-    
-    public int minDistancem(String word1, String word2, int[][] storage) {
-        
-        int m=word1.length();
+        // return minDistancem(word1,word2, storage);
+            
+           int m=word1.length();
         int n=word2.length();
         
-        if(storage[m][n]!=-1)
+        int dp[][]=new int[m+1][n+1];
+        
+        for(int i=0;i<=m;i++)
         {
-            return storage[m][n];
+            dp[i][0]=i;
+        }
+         for(int j=0;j<=n;j++)
+        {
+            dp[0][j]=j;
         }
         
-        if(m==0)
+        for(int i=1; i<=m;i++)
         {
-            storage[m][n]=n;
-            return storage[m][n];
-        }
-        
-          
-        if(n==0)
-        {
-            storage[m][n]=m;
-            return storage[m][n];
-        }
-        
-         if(word1.charAt(0)==word2.charAt(0))
-        {
-            storage[m][n]=minDistancem(word1.substring(1), word2.substring(1), storage);
-        }else{
-            int option1= minDistancem(word1, word2.substring(1),storage);
-            int option2= minDistancem(word1.substring(1), word2,storage);
-            int option3= minDistancem(word1.substring(1), word2.substring(1), storage);
-            
-            storage[m][n]=1+Math.min(option1,Math.min(option2,option3));
+            for(int j=1; j<=n;j++)
+            {
+                if(word1.charAt(m-i)==word2.charAt(n-j))
+                {
+                    dp[i][j]=dp[i-1][j-1];
+                }else
+                {
+                    dp[i][j]=1+Math.min(dp[i-1][j], Math.min(dp[i][j-1],dp[i-1][j-1]));
+                }
+                
             }
-                           
-                           return storage[m][n];
+            
+           
+        }
+         return dp[m][n];
     }
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//     public int minDistancem(String word1, String word2, int[][] storage) {
+        
+//         int m=word1.length();
+//         int n=word2.length();
+        
+//         if(storage[m][n]!=-1)
+//         {
+//             return storage[m][n];
+//         }
+        
+//         if(m==0)
+//         {
+//             storage[m][n]=n;
+//             return storage[m][n];
+//         }
+        
+          
+//         if(n==0)
+//         {
+//             storage[m][n]=m;
+//             return storage[m][n];
+//         }
+        
+//          if(word1.charAt(0)==word2.charAt(0))
+//         {
+//             storage[m][n]=minDistancem(word1.substring(1), word2.substring(1), storage);
+//         }else{
+//             int option1= minDistancem(word1, word2.substring(1),storage);
+//             int option2= minDistancem(word1.substring(1), word2,storage);
+//             int option3= minDistancem(word1.substring(1), word2.substring(1), storage);
+            
+//             storage[m][n]=1+Math.min(option1,Math.min(option2,option3));
+//             }
+                           
+//                            return storage[m][n];
+//     }
+    
+        
 }
