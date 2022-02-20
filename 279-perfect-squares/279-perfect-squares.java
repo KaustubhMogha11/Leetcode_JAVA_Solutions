@@ -7,11 +7,32 @@ class Solution {
 //         for(int i = 1;i*i<=n;i++){
 //             ans = Math.min(ans,1 + numSquares(n - (i*i)));
 //         }
-//         return ans;
+// //         return ans;
         int storage[]=new int [n+1];
         
         return numSquaresM(n,storage);
         
+      
+//         int dp[]=new int [n+1];
+//           //using dp
+//         if(n==0)
+//         {
+//             return dp[n];
+//         }
+//         dp[0]=0;
+//         // dp[1]=1;
+//         // dp[2]=2;
+        
+//         if(dp[n]!=0)
+//         {
+//             return dp[n];
+//         }
+//         for(int i=1; i*i<=n;i++)
+//         {
+//             dp[i]=Math.min(dp[i], 1+dp[n-(i*i)]);
+//         }
+                                     
+//                                      return dp[n];
     }
       public int numSquaresM(int n, int[] storage) {
           
