@@ -1,52 +1,29 @@
 class Solution {
     public int minPathSum(int[][] grid) {
-       
-        // return minPathSumb(grid,0,0);
-         int m=grid.length;
-         int n=grid[0].length;
-        int storage[][]=new int[m][n];
-        return minPathSumb(grid,0,0,storage);
+        int m=grid.length;
+        int n=grid[0].length;
+        int dp[][]=new int[m][n];
+        
+        dp[m-1][n-1]=grid[m-1][n-1];
+        
+        for(int i=m-2;i>=0;i--)
+        {
+            dp[i][n-1]=grid[i][n-1]+dp[i+1][n-1];
+        }
+        
+         for(int j=n-2;j>=0;j--)
+        {
+            dp[m-1][j]=grid[m-1][j]+dp[m-1][j+1];
+        }
+        
+        for(int i=m-2; i>=0;i--)
+        {
+            for(int j=n-2;j>=0;j--)
+            {
+                dp[i][j]=Math.min(dp[i+1][j],dp[i][j+1])+grid[i][j];
+            }
+        }
+        
+        return dp[0][0];
     }
-     public int minPathSumb(int[][] grid, int i,int j, int [][] storage){
-         
-         int m=grid.length;
-         int n=grid[0].length;
-         
-//          if(i==m-1 && j==n-1){
-//              return grid[i][j];
-//          }
-         
-//          if(i>=m || j>=n  ){
-//              return Integer.MAX_VALUE;
-//          }
-         
-//          int option1=minPathSumb(grid,i,j+1);
-//           // int option2=minPathSumb(grid,i+1,j+1);
-//           int option3=minPathSumb(grid,i+1,j);
-     
-//       return grid[i][j]+Math.min(option1, option3);
-     
-     
-         if(i==m-1 && j==n-1){
-             storage[m-1][n-1]=grid[i][j];
-             return storage[i][j];
-         }
-         
-         if(i>=m || j>=n  ){
-             return Integer.MAX_VALUE;
-         }
-         
-         if(storage[i][j]!=0)
-         {
-             return storage[i][j];
-         }
-         
-          int option1=minPathSumb(grid,i,j+1,storage);
-//           // int option2=minPathSumb(grid,i+1,j+1);
-          int option3=minPathSumb(grid,i+1,j,storage);
-         storage[i][j]=grid[i][j]+Math.min(option1,option3);
-         
-         return storage[i][j];
-     }
-         
 }
