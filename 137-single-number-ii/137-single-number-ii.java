@@ -1,23 +1,19 @@
 class Solution {
     public int singleNumber(int[] nums) {
-       
-        for(int i=0;i<nums.length;i++)
-        {
-             int count=0;
-            for(int j=0;j<nums.length;j++)
-            {
-                if(nums[i]==nums[j])
-                {
-                    count++;
-                }
-                
+
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i : nums){
+            if(map.containsKey(i)){
+                map.put(i, map.get(i) + 1);
+            }else{
+                map.put(i,1);
             }
-            
-            if(count!=3)
-            {
-                return nums[i];
+        }
+        for(int i : nums){
+            if(map.get(i) == 1){
+                return i;
             }
-    }
-        return -1;
-    }       
+        }
+        return -1; 
+}
 }
