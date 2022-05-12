@@ -34,6 +34,7 @@ class Solution {
           int t=nums[i];
           nums[i]=nums[index];
           nums[index]=t;
+        
               
       }
 }
