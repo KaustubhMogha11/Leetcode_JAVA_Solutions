@@ -1,30 +1,35 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        
-       int m=nums1.length;
+    
+    
+        int m=nums1.length;
         int n=nums2.length;
+            if(m>n)
+        return findMedianSortedArrays(nums2,nums1);
         
-            int finalArray[]=new int[n+m];
-    int i=0,j=0,k=0;
-    while(i<m && j<n) {
-        if(nums1[i]<nums2[j]) {
-            finalArray[k++] = nums1[i++];
+        
+        int s=0,e=m,medianpos=((m+n)+1)/2;
+        
+        while(s<=e)
+        {
+            int cut1=(s+e)>>1;
+            int cut2=medianpos-cut1;
+            
+            int l1=(cut1==0)? Integer.MIN_VALUE:nums1[cut1-1];
+            int l2=(cut2==0)? Integer.MIN_VALUE:nums2[cut2-1];
+            int r1 = (cut1 == m)? Integer.MAX_VALUE:nums1[cut1];
+        int r2 = (cut2 == n)? Integer.MAX_VALUE:nums2[cut2];
+            
+         
+        if(l1<=r2 && l2<=r1) {
+            if((m+n)%2 != 0)
+                return Math.max(l1,l2);
+            else 
+                return (Math.max(l1,l2)+Math.min(r1,r2))/2.0;
         }
-        else {
-            finalArray[k++] = nums2[j++];
-        }
+        else if(l1>r2) e= cut1-1;
+        else s= cut1+1;
     }
-    if(i<m) {
-        while(i<m) 
-            finalArray[k++] = nums1[i++];
-    }
-    if(j<n) {
-        while(j<n)
-            finalArray[k++] = nums2[j++];
-    }
-    n = n+m;
-    if(n%2==1) 
-        return finalArray[((n+1)/2)-1];
-    else return ((double)finalArray[(n/2)-1]+(double)finalArray[(n/2)])/2.0;
+    return 0.0;
 }
     }
