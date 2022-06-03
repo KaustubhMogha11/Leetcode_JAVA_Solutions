@@ -1,26 +1,7 @@
 class Solution {
-    
-     public int climbStairs(int n){
-         
-//          int storage[]=new int[n+1];
-//          return  climbStairsM(n,storage);
-         
-         int dp[]=new int [n+1];
-         dp[0]=1;
-         dp[1]=1;
-         
-         for(int i=2; i<=n; i++)
-         {
-             dp[i]=dp[i-1]+dp[i-2];
-             
-         }
-         
-         return dp[n];
-     }
-    
-    
-//     public int climbStairsM(int n, int[] storage) {
-    
+    public int climbStairs(int n) {
+        
+        
 //         if(n<0)
 //         {
 //             return 0;
@@ -28,17 +9,19 @@ class Solution {
         
 //         if(n==0)
 //         {
-//             storage[n]=1;
-//         return storage[n];
+//             return 1;
+            
 //         }
         
-//         if(storage[n]!=0)
-//         {
-//             return storage[n];
-//         }
-//         storage[n]=climbStairsM(n-1, storage)+climbStairsM(n-2, storage);
+//         return climbStairs(n-1)+climbStairs(n-2);
+        int dp[]=new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+        for(int i=2;i<n+1;i++)
+        {
+            dp[i]=dp[i-1]+dp[i-2];
+        }
         
-//         return storage[n];
-//     }
-    
+        return dp[n];
+    }
 }
