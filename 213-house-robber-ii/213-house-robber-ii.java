@@ -1,13 +1,35 @@
 class Solution {
     public int rob(int[] nums) {
         
+//         if(nums.length==1)
+//         {
+//             return nums[0];
+//         }
+        
+//         int temp1[]=new int[nums.length-1];
+//         int temp2[]=new int[nums.length-1];
+        
+//         for(int i=0;i<nums.length;i++)
+//         {
+//             if(i!=0)
+//             {
+//                 temp1[i-1]=nums[i];
+//             }
+//             if(i!=nums.length-1)
+//             {
+//                 temp2[i]=nums[i];
+//             }
+            
+//         }
+        
         if(nums.length==1)
         {
             return nums[0];
         }
         
-        int temp1[]=new int[nums.length-1];
-        int temp2[]=new int[nums.length-1];
+        int n=nums.length;
+        int temp1[]=new int[nums.length];
+        int temp2[]=new int[nums.length];
         
         for(int i=0;i<nums.length;i++)
         {
@@ -15,11 +37,11 @@ class Solution {
             {
                 temp1[i-1]=nums[i];
             }
+            
             if(i!=nums.length-1)
             {
                 temp2[i]=nums[i];
             }
-            
         }
         
         return Math.max(robm(temp1),robm(temp2));
