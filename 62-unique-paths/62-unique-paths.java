@@ -3,31 +3,22 @@ class Solution {
         
         int dp[][]=new int[m][n];
         
-        return uniquePaths(m-1,n-1,dp);
+    return ans(m,n,dp,0,0);
     }
     
-      public int uniquePaths(int m, int n,int[][] dp) {
-          
-       if(m==0 && n==0)
-       {
-           return 1;
-       }
-          if(m<0 || n<0)
-          {
-              return 0;
-          }
-          
-          if(dp[m][n]!=0)
-          {
-              return dp[m][n];
-          }
-          
-        int down= uniquePaths(m-1,n,dp);
-          int right= uniquePaths(m,n-1,dp);
-          
-          return dp[m][n]=down+right;
-          
-          
-          
-      }
+    public int ans(int m,int n,int[][] dp,int i,int j){
+        
+        if(i==m-1 && j==n-1)
+            return 1;
+        if(i>=m || j>=n)
+            return 0;
+        if(dp[i][j]!=0)
+            return dp[i][j];
+        
+        int opt1=ans(m,n,dp,i+1,j);
+        int opt2=ans(m,n,dp,i,j+1);
+        
+        dp[i][j]=opt1+opt2;
+        return dp[i][j];
+    }
 }
