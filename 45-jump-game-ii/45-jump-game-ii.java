@@ -1,20 +1,17 @@
 class Solution {
     public int jump(int[] nums) {
-           int reachable=0;
+        
         int count=0;
-        int temp=0;
+        int curr=0;
+        int reachable=0;
         for(int i=0;i<nums.length;i++)
         {
-            if(temp<i)
+            if(curr<i)
             {
-               count++;
-                temp=reachable;
-                reachable=0;
+                count++;
+                curr=reachable;
             }
-            
-            reachable=Math.max(reachable,i+nums[i]);
-    
-            
+            reachable=Math.max(reachable,nums[i]+i);
         }
         
         return count;
