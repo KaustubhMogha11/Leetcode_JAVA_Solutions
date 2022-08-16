@@ -1,10 +1,9 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
         
-      List<List<Integer>> ans=new ArrayList<>();
+        List<List<Integer>> ans=new ArrayList<>();
         List<Integer> prev=null;
-        
-        for(int i=0;i<numRows;i++)
+          for(int i=0;i<numRows;i++)
         {
             List<Integer> row=new ArrayList<>();
             for(int j=0;j<=i;j++)
@@ -13,10 +12,10 @@ class Solution {
                     row.add(1);
                 else row.add(prev.get(j-1)+prev.get(j));
             }
-            prev=row;
+          prev=row;
             ans.add(row);
+            
         }
-        
         return ans;
     }
 }
