@@ -22,7 +22,6 @@ class Solution {
         int opt1=height(root.left)+height(root.right);
         int opt2=diameterOfBinaryTree(root.left);
         int opt3=diameterOfBinaryTree(root.right);
-        
         return Math.max(opt1,Math.max(opt2,opt3));
     }
     
@@ -32,5 +31,4 @@ class Solution {
         
         return 1+Math.max(height(root.left),height(root.right));
     }
-        
 }
