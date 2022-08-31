@@ -18,24 +18,22 @@ class Solution {
         
         if(root==null)
             return false;
-        
-        if(compare(root,subRoot))
+          if(isSubtreee(root,subRoot))
         {
             return true;
         }
         
         return isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot);
     }
-    
-    public boolean compare(TreeNode root1,TreeNode root2){
-        if(root1==null || root2==null)
+     public boolean isSubtreee(TreeNode root, TreeNode subRoot){
+         
+ if(root==null || subRoot==null)
         {
-            return root1==null && root2==null;
+            return root==null && subRoot==null;
         }
-        
-    if(root1.val!=root2.val)
-        return false;
-        
-          return compare(root1.left, root2.left) && compare(root1.right, root2.right);
-    }
+         if(root.val!=subRoot.val)
+             return false;
+         
+         return isSubtreee(root.left,subRoot.left)&& isSubtreee(root.right,subRoot.right);
+     }
 }
