@@ -14,34 +14,24 @@
  * }
  */
 class Solution {
+    int ans=0;
     public int sumNumbers(TreeNode root) {
         
-        if(root==null)
-            return 0;
-        
-        List<Integer> list=new ArrayList<>();
-        List<Integer> ans=ans(root,"",list);
-        int sum=0;
-        for(int i=0;i<list.size();i++)
-        {
-            sum+=ans.get(i);
-        }
-        
-        return sum;
-    }
-    public List<Integer> ans(TreeNode root,String str,List<Integer> ans)
-    {
-       if(root==null)
-           return null;
-        
-        if(root.left==null && root.right==null){
-            ans.add(Integer.parseInt(str+root.val));
-                return ans;
-        }
-
-             ans(root.left,str+root.val,ans);
-              ans(root.right,str+root.val,ans);
-        
+        ans(root,"");
         return ans;
-}
+    }
+    
+    public  void ans(TreeNode root,String s)
+    {
+        if(root == null) return;
+        if(root.left==null && root.right==null)
+        {
+            ans+=Integer.parseInt(s+root.val);
+        }
+        
+        ans(root.left,s+root.val);
+        ans(root.right,s+root.val);
+        
+        
+    }
 }
