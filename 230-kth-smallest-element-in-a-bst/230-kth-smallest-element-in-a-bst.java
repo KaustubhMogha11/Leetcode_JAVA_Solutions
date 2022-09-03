@@ -14,28 +14,26 @@
  * }
  */
 class Solution {
-    
-    private int index;
-    private int ans;
-    
-    // Inorder traversal
-    // kth-smallest element is kth element in inorder traversal
-    private void traverse(TreeNode root, int k) {
-        if (root != null) {
-            traverse(root.left, k);
-            index++;
-            if (index == k) {
-                ans = root.val;
-                return;
-            }
-            traverse(root.right, k);
-        }    
+    int count=0;
+    int res=Integer.MIN_VALUE;
+    public int kthSmallest(TreeNode root, int k) {
+        
+        ans(root,k);
+        return res;
     }
     
-    public int kthSmallest(TreeNode root, int k) {
-        ans = -1;
-        index = 0;
-        traverse(root, k);
-        return ans;
+    public void ans(TreeNode root,int k)
+    {
+        if(root==null)
+            return ;
+        
+        ans(root.left,k);
+        count++;
+        if(count==k)
+        {
+            res=root.val;
+        }
+            
+        ans(root.right,k);
     }
 }
