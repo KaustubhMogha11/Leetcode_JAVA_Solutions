@@ -14,27 +14,25 @@ class Solution {
         if(head==null)
             return head;
         
-        ListNode p1=head;
-        ListNode p2=head;
-        
+        ListNode temp=head;
         while(n>0)
         {
-            p1=p1.next;
+            temp=temp.next;
             n--;
         }
         
-        if(p1==null)
+        if(temp==null)
         {
-            return p2.next;
+            return head.next;
+        }
+        ListNode curr=head;
+        while(temp.next!=null)
+        {
+            curr=curr.next;
+            temp=temp.next;
         }
         
-        while(p1.next!=null)
-        {
-            p1=p1.next;
-            p2=p2.next;
-        }
-        
-        p2.next=p2.next.next;
+        curr.next=curr.next.next;
         
         return head;
     }
