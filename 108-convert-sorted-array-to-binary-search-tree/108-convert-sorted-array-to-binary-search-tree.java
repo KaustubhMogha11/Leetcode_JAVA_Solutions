@@ -16,7 +16,10 @@
 class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
         
-    return ans(nums,0,nums.length-1);
+        if(nums.length==0)
+            return null;
+        
+        return ans(nums,0,nums.length-1);
     }
     
     public TreeNode ans(int[] nums,int s,int e)
@@ -25,10 +28,13 @@ class Solution {
             return null;
         
         int mid=e-(e-s)/2;
+        
         TreeNode root=new TreeNode(nums[mid]);
         root.left=ans(nums,s,mid-1);
         root.right=ans(nums,mid+1,e);
         
+        
         return root;
+        
     }
 }
